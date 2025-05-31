@@ -1,0 +1,40 @@
+<section class="section">
+  <div class="container">
+
+    <h2 class="title is-4">Чат із <%= @recipient.username %></h2>
+
+    <div class="box" style="max-height: 400px; overflow-y: auto;">
+      <% if @messages.any? %>
+        <% @messages.each do |msg| %>
+          <div class="mb-3">
+            <p>
+              <strong><%= msg.sender.username %>:</strong>
+              <span><%= msg.content %></span>
+            </p>
+            <small class="has-text-grey">
+              <%= msg.created_at.strftime("%Y-%m-%d %H:%M") %>
+            </small>
+          </div>
+        <% end %>
+      <% else %>
+        <p class="has-text-grey-light">Почніть розмову — повідомлень поки що немає.</p>
+      <% end %>
+    </div>
+
+    <form action="/conversations/<%= @recipient.id %>" method="post" class="mt-4">
+      <div class="field has-addons">
+        <div class="control is-expanded">
+          <input class="input" type="text" name="content" placeholder="Напишіть повідомлення..." required>
+        </div>
+        <div class="control">
+          <button type="submit" class="button is-link">Надіслати</button>
+        </div>
+      </div>
+    </form>
+
+    <div class="mt-5">
+      <a href="/conversations" class="button is-light">⬅ Усі чати</a>
+    </div>
+
+  </div>
+</section>

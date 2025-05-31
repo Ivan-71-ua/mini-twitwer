@@ -1,0 +1,69 @@
+<div class="container mt-5">
+
+  <div class="box has-background-light">
+    <h2 class="title is-4">👋 Привіт, <%= @user.username %>!</h2>
+    <p>Email: <%= @user.email %></p>
+
+    <div class="buttons mt-3">
+      <a href="/logout" class="button is-danger is-light">Вийти</a>
+      <a href="/feed" class="button is-info is-light">Стрічка</a>
+      <a href="/conversations" class="button is-primary is-light">💬 Чати</a>
+    </div>
+  </div>
+
+  <div class="box">
+    <h3 class="title is-5">✏️ Створити повідомлення</h3>
+    <form action="/messages" method="post" enctype="multipart/form-data">
+      <div class="field">
+        <div class="control">
+          <textarea class="textarea" name="content" placeholder="Що нового?" required></textarea>
+        </div>
+      </div>
+
+      <div class="field">
+        <div class="file has-name">
+          <label class="file-label">
+            <input class="file-input" type="file" name="image">
+            <span class="file-cta">
+              <span class="file-icon"><i class="fas fa-upload"></i></span>
+              <span class="file-label">Оберіть зображення</span>
+            </span>
+          </label>
+        </div>
+      </div>
+
+      <div class="field">
+        <div class="control">
+          <button type="submit" class="button is-success">Надіслати</button>
+        </div>
+      </div>
+    </form>
+  </div>
+
+  <div class="box">
+    <h3 class="title is-5">📜 Ваші повідомлення</h3>
+
+    <% @user.messages.order(created_at: :desc).each do |msg| %>
+      <div class="box has-background-white-ter mb-4">
+        <p><%= msg.content %></p>
+
+        <% if msg.image %>
+          <figure class="image mt-2 mb-2">
+            <img src="<%= msg.image %>" style="max-width: 300px;">
+          </figure>
+        <% end %>
+
+        <small class="has-text-grey">
+          <%= msg.created_at.strftime("%Y-%m-%d %H:%M") %>
+        </small><br>
+
+        <form action="/messages/<%= msg.id %>/delete" method="post" style="display:inline;">
+          <button class="button is-small is-danger mt-2" onclick="return confirm('Ви впевнені, що хочете видалити повідомлення?')">
+            🗑️ Видалити
+          </button>
+        </form>
+      </div>
+    <% end %>
+  </div>
+
+</div>

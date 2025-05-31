@@ -1,0 +1,9 @@
+
+development:
+  adapter: postgresql
+  encoding: unicode
+  database: mini_twitter_db
+  pool: 5
+  username: postgres        #  юзер
+  password: 03481992i4s   #  пароль
+  host: localhost

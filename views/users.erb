@@ -1,0 +1,25 @@
+<div class="section">
+  <div class="container">
+
+    <!-- Кнопки навігації -->
+    <div class="buttons mb-4">
+      <a href="/profile" class="button is-link is-light">⬅ Назад до профілю</a>
+      <a href="/feed" class="button is-primary is-light">📰 Стрічка новин</a>
+    </div>
+
+    <h2 class="title is-4">👥 Інші користувачі</h2>
+
+    <div class="box">
+      <ul>
+        <% @users.each do |user| %>
+          <li class="mb-2">
+            <a class="has-text-link has-text-weight-semibold" href="/users/<%= user.id %>">
+              <%= user.username %>
+            </a>
+          </li>
+        <% end %>
+      </ul>
+    </div>
+
+  </div>
+</div>

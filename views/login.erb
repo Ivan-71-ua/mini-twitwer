@@ -1,0 +1,35 @@
+<div class="box" style="max-width: 400px; margin: 0 auto;">
+  <h2 class="title is-4 has-text-centered">🔐 Вхід</h2>
+
+  <% if @error %>
+    <div class="notification is-danger">
+      <%= @error %>
+    </div>
+  <% end %>
+
+  <form action="/login" method="post">
+    <div class="field">
+      <label class="label">Email</label>
+      <div class="control">
+        <input class="input" type="email" name="email" required>
+      </div>
+    </div>
+
+    <div class="field">
+      <label class="label">Пароль</label>
+      <div class="control">
+        <input class="input" type="password" name="password" required>
+      </div>
+    </div>
+
+    <div class="field">
+      <div class="control">
+        <button type="submit" class="button is-primary is-fullwidth">Увійти</button>
+      </div>
+    </div>
+  </form>
+
+  <p class="has-text-centered mt-4">
+    Немає акаунта? <a href="/register">Зареєструватися</a>
+  </p>
+</div>

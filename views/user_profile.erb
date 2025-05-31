@@ -1,0 +1,78 @@
+<div class="section">
+  <div class="container">
+
+    <!-- Кнопки навігації -->
+    <div class="box" style="position: sticky; top: 0; z-index: 1000; background: white;">
+      <div class="buttons">
+        <a href="/profile" class="button is-link is-light">⬅ Профіль</a>
+        <a href="/feed" class="button is-primary is-light">📰 Стрічка</a>
+        <a href="/users" class="button is-light">👥 Інші користувачі</a>
+        <a class="button is-link is-light" href="/conversations/<%= @user.id %>">💬 Почати чат</a>
+      </div>
+    </div>
+
+    <!-- Заголовок профілю -->
+    <h2 class="title is-4">👤 Профіль: <%= @user.username %></h2>
+
+    <!-- Кнопка підписки -->
+    <% if @is_following %>
+      <form action="/unfollow/<%= @user.id %>" method="post" class="mb-4">
+        <button class="button is-danger">🚫 Відписатися</button>
+      </form>
+    <% else %>
+      <form action="/follow/<%= @user.id %>" method="post" class="mb-4">
+        <button class="button is-success">➕ Підписатися</button>
+      </form>
+    <% end %>
+
+    <!-- Пости -->
+    <h3 class="subtitle is-5">📝 Пости:</h3>
+
+    <% @user.messages.order(created_at: :desc).each do |msg| %>
+      <div class="box">
+        <p><%= msg.content %></p>
+
+        <figure class="image" style="max-width: 400px;">
+          <img src="<%= msg.image %>" style="width: 100%; height: auto; object-fit: contain; display: block;">
+        </figure>
+
+
+        <small class="has-text-grey">
+          🕒 <%= msg.created_at.strftime("%Y-%m-%d %H:%M") %>
+        </small><br><br>
+
+        <!-- Лайки -->
+        <div class="mb-3">
+          <% if current_user.likes.exists?(message_id: msg.id) %>
+            <form action="/messages/<%= msg.id %>/unlike" method="post" style="display:inline;">
+              <button class="button is-small is-warning">💔 Скасувати вподобання</button>
+            </form>
+          <% else %>
+            <form action="/messages/<%= msg.id %>/like" method="post" style="display:inline;">
+              <button class="button is-small is-danger">❤️ Вподобати</button>
+            </form>
+          <% end %>
+          <span class="ml-2 has-text-weight-semibold">Лайків: <%= msg.likes.count %></span>
+        </div>
+
+        <!-- Коментарі -->
+        <h4 class="subtitle is-6">💬 Коментарі:</h4>
+        <% msg.comments.each do |c| %>
+          <p><strong><%= c.user.username %>:</strong> <%= c.content %></p>
+        <% end %>
+
+        <form action="/messages/<%= msg.id %>/comments" method="post" class="mt-2">
+          <div class="field has-addons">
+            <div class="control is-expanded">
+              <input class="input" type="text" name="content" placeholder="Залишити коментар" required>
+            </div>
+            <div class="control">
+              <button type="submit" class="button is-info">💬 Коментувати</button>
+            </div>
+          </div>
+        </form>
+      </div>
+    <% end %>
+
+  </div>
+</div>
