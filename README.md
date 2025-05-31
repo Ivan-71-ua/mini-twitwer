@@ -1,89 +1,101 @@
-🐦 Mini Twitter — Sinatra-based Social Network App
-This project is a lightweight clone of Twitter, built entirely with Ruby and the Sinatra web framework. 
-It delivers core features of a modern social media platform, including registration, authentication, posting messages with images, likes, comments, 
-following/unfollowing, a personalized news feed, and private messaging (chat) — all powered by PostgreSQL and ActiveRecord.
+# 🐦 Mini Twitter — Sinatra-based Social Network App
 
-🚀 Project Goals
+This project is a **lightweight clone of Twitter**, built entirely with **Ruby** and the **Sinatra** web framework.  
+It delivers core features of a modern social media platform, including:
+
+- ✅ Registration & authentication  
+- 📝 Posting messages with text and images  
+- ❤️ Likes & 💬 comments  
+- 👥 Following/unfollowing users  
+- 📰 Personalized news feed  
+- 📩 Private messaging (chat)
+
+All powered by **PostgreSQL**, **ActiveRecord**, and styled with **Bulma CSS**.
+
+---
+
+## 🚀 Project Goals
+
 To develop a fully functional web application where users can:
 
-Sign up and log in securely
+- Sign up and log in securely
+- Create posts with text and images
+- Interact through likes, comments, and direct messages
+- Follow and unfollow other users
+- Explore a personalized feed and chat in real time
 
-Create posts with text and images
+---
 
-Interact through likes, comments, and direct messages
+## 🛠 Technologies Used
 
-Follow and unfollow other users
+- **Language:** Ruby  
+- **Framework:** Sinatra  
+- **Database:** PostgreSQL  
+- **ORM:** ActiveRecord  
+- **CSS Framework:** Bulma  
+- **Server:** WEBrick  
+- **Other Tools:** Rack, Rake, Gem
 
-Explore personalized feed and chat in real-time
+---
 
-🛠 Technologies Used
-Language: Ruby
+## 📁 Project Structure
 
-Framework: Sinatra
+| File/Folder         | Description                                       |
+|---------------------|---------------------------------------------------|
+| `app.rb`            | Main application file with all routing logic     |
+| `models/`           | Database models (e.g. `user.rb`, `message.rb`)   |
+| `views/`            | HTML templates using ERB                         |
+| `public/uploads/`   | Image storage                                     |
+| `config/database.yml` | Database configuration file                   |
+| `config.ru`         | Rack configuration file                          |
+| `Rakefile`          | Task and migration runner                        |
 
-Database: PostgreSQL
+---
 
-ORM: ActiveRecord
+## 🌐 Key Features
 
-CSS Framework: Bulma
+### 👤 User Account
+- Secure registration & login using **bcrypt**
+- Session-based authentication
 
-Server: WEBrick
+### 📄 Posts & Feed
+- Create posts with optional image uploads
+- View your own and followed users' posts
+- Like and comment on posts
 
-Tools: Rack, Rake, Gem
+### 💬 Messaging
+- Chat-style private messaging
+- View all active conversations
 
-📁 Project Structure
-app.rb – main application file with all routing logic (GET/POST)
+### 👥 Social
+- Browse and visit other user profiles
+- Follow or unfollow users
 
-models/ – database models (user.rb, message.rb, etc.)
+### 🎨 UI & Styling
+- Responsive interface with **Bulma CSS**
+- Clean, intuitive user experience
 
-views/ – ERB templates for rendering HTML
+---
 
-public/uploads/ – image storage
+## 🧩 Implementation Highlights
 
-config/database.yml – database configuration
+- All routes implemented in `app.rb`, organized into `GET` and `POST` blocks
+- Images are uploaded via Rack and stored in the file system (`public/uploads`)
+- Database interactions handled with **ActiveRecord**
+- Migrations and schema management via `Rake` tasks
 
-config.ru – Rack config file
+---
 
-Rakefile – migration and task runner
+## ✅ Summary
 
-🌐 Key Features
-👤 User Account
-Secure registration & login via bcrypt
+This project showcases how to build a complete **social media web app** using **Sinatra** and **Ruby** with minimal dependencies.  
+Created as a lab assignment, it emphasizes:
 
-Session-based authentication
+- MVC architecture
+- Session management
+- File uploads
+- User interaction features
+- Responsive, component-based frontend
 
-📄 Posts & Feed
-Create posts with optional image uploads
+---
 
-View your posts and a personalized timeline
-
-Like and comment on posts
-
-💬 Messaging
-Send and receive private messages (chat-style)
-
-View list of all conversations
-
-👥 Social
-Browse other users’ profiles
-
-Follow/unfollow users
-
-Navigate user profiles directly
-
-🎨 UI & Styling
-Responsive design via Bulma
-
-Clean and intuitive interface
-
-🧩 Implementation Highlights
-All route logic in app.rb, separated into GET and POST
-
-File uploads handled via Rack and saved to the local file system
-
-Data managed via ActiveRecord with Rake for migrations
-
-✅ Summary
-This project demonstrates how to build a fully functional mini social network using minimal dependencies. 
-It was created as a part of a lab assignment to learn and apply MVC architecture, database interaction, 
-session management, file uploads, and responsive frontend design.
